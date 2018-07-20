@@ -56,3 +56,19 @@ docker image rm [选项] <镜像1> [<镜像2> ...]
 #### 2.6. 删除容器
 可以使用 docker container rm 来删除一个处于终止状态的容器。如果要删除正在运行的容器，可以添加 -f 参数。Docker 会发送 SIGKILL 信号给容器。
 清理所有处于终止状态的容器， 使用命令 docker container prune
+
+### 3. 仓库（Repository）
+仓库是集中存放镜像的地方
+注册服务器(Registry),实际上是管理仓库的具体服务器，每个服务器上可以有多个仓库，每个仓库可以有多个镜像。
+
+#### 3.1. Docker Hub
+官方维护一个公共仓库 Docker Hub, 其中包括了数量超过15，000的镜像。
+注册：可以在 https://cloud.docker.com 免费注册一个账号
+登陆：可通过 docker login 命令交互式的数据用户名和密码来完成命令行界面登录 Docker Hub
+退出：可通过 docker logout 命令退出登录
+拉去镜像：通过 docker search 查找官方仓库中镜像，并利用 docker pull 命令将它下载到本地
+推送镜像：通过 docker push 命令将自己的镜像推送到docker hub中
+自动创建（Automated Builds）：对于需要经常升级镜像内程序来说十分方便。自动创建允许用户通过Docker Hub指定跟踪一个目标网站（目前支持docker Hub和Bitbucket）上的项目，一旦项目发生新的提交或者创建新的tag，Docker Hub会自动构建镜像并推送到 Docker Hub 中
+#### 3.2. 私有仓库
+有时候使用 Docker Hub 这样的公共仓库不方便，用户可以创建一个本地仓库共私人使用。使用官方的工具 docker-registry 可以构建私有仓库
+
